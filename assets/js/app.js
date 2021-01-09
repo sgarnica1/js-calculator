@@ -43,10 +43,10 @@ class Calculator {
         result =  prev - current;
         break;
       case '*': 
-        result =  prev / current;
+        result =  prev * current;
         break;
       case '÷': 
-        result =  prev * current;
+        result =  prev / current;
         break;
       default: 
         return
@@ -121,4 +121,103 @@ equalsButton.addEventListener('click', () => {
 deleteButton.addEventListener('click', () => {
   calculator.delete();
   calculator.updateDisplay();
+})
+
+
+let keys = {
+  ZERO: 96,
+  ONE: 97,
+  TWO: 98,
+  THREE: 99,
+  FOUR: 100,
+  FIVE: 101,
+  SIX: 102,
+  SEVEN: 103,
+  EIGHT: 104,
+  NINE: 105,
+  POINT: 110,
+  ENTER: 13,
+  ADD: 107,
+  SUBTRACT: 109,
+  MULTIPLY: 106,
+  DIVIDE: 111,
+  DELETE: 8
+};
+
+document.addEventListener('keyup', evento => {
+
+  function appendKeyNumber() {
+    calculator.appendNumber(evento.key);
+    calculator.updateDisplay();
+  }
+
+  function keyOperator() {
+    calculator.chooseOperation(evento.key);
+    calculator.compute();
+    calculator.updateDisplay();
+  }
+
+  function enter() {
+    calculator.compute();
+    calculator.updateDisplay();
+  }
+
+  switch(evento.keyCode) {
+    case keys.ZERO: 
+      appendKeyNumber();
+      break;
+    case keys.ONE: 
+      appendKeyNumber();
+      break;
+    case keys.TWO: 
+      appendKeyNumber();
+      break;
+    case keys.THREE: 
+      appendKeyNumber();
+      break;
+    case keys.FOUR: 
+      appendKeyNumber();
+      break;
+    case keys.FIVE: 
+      appendKeyNumber();
+      break;
+    case keys.SIX: 
+      appendKeyNumber();
+      break;
+    case keys.SEVEN: 
+      appendKeyNumber();
+      break;
+    case keys.EIGHT: 
+      appendKeyNumber();
+      break;
+    case keys.NINE: 
+      appendKeyNumber();
+      break;
+    case keys.POINT: 
+      appendKeyNumber();
+      break;
+    case keys.ENTER: 
+      enter();
+      break;
+    case keys.DELETE: 
+      calculator.delete();
+      calculator.updateDisplay();
+      break;
+    case keys.ADD: 
+      keyOperator();
+      break;
+    case keys.SUBTRACT: 
+      keyOperator();
+      break;
+    case keys.MULTIPLY: 
+      keyOperator();
+      break;
+    case keys.DIVIDE: 
+      calculator.chooseOperation('÷');
+      calculator.compute();
+      calculator.updateDisplay();
+      break;
+    default:
+      return
+  }
 })
